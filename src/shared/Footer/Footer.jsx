@@ -2,8 +2,8 @@ import logo from '../../assets/logo.png'
 
 const Footer = () => {
     return (
-        <div>
-            <footer className="footer p-10 bg-base-200 text-base-content">
+        <div className="bg-base-200">
+            <footer className="footer p-10 text-base-content w-full md:w-11/12 mx-auto">
                 <div>
                     <img className='w-24 h-24' src={logo} alt="company logo" />
                     <p>Learn Sports Ltd.<br />Providing reliable learn since 2005</p>

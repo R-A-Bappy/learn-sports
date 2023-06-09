@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const NavBar = () => {
     const user = false;
     return (
-        <div className="navbar bg-base-100 justify-between">
+        <div className="navbar bg-base-100 justify-between w-11/12 md:w-10/12 mx-auto">
             <div className="w-1/2">
                 <h2 className="text-2xl lg:text-4xl font-bold">LEARN <span className="text-orange-400">SPORTS</span></h2>
             </div>
