@@ -25,12 +25,12 @@ const Dashboard = () => {
                 </ul>}
                 {instructor && <ul className="menu p-4 w-80 h-full text-white bg-emerald-900">
                     {/* Sidebar content here */}
-                    <li><Link to='/dashboard/addClass'><FaPlusSquare />Add Class</Link></li>
-                    <li><Link to='/dashboard/instructorClass'><FaRegUser /> My Classes</Link></li>
+                    <li><Link to='addClass'><FaPlusSquare />Add Class</Link></li>
+                    <li><Link to='instructorClass'><FaRegUser /> My Classes</Link></li>
                 </ul>}
                 {admin && <ul className="menu p-4 w-80 h-full text-white bg-emerald-900">
                     {/* Sidebar content here */}
-                    <li><Link to='/dashboard/manageClass'><MdManageHistory />Manage Classes</Link></li>
+                    <li><Link to='manageClass'><MdManageHistory />Manage Classes</Link></li>
                     <li><Link to='manageUser'><MdManageAccounts /> All Users</Link></li>
                 </ul>}
             </div>
