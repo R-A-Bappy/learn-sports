@@ -4,9 +4,9 @@ import icon from '../assets/contract.png'
 import { Link, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
-    const user = false;
+    const user = true;
     const instructor = false;
-    const admin = true;
+    const admin = false;
     return (
         <div className="drawer">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
