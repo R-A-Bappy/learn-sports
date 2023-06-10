@@ -38,7 +38,6 @@ const Register = () => {
                 setShowPassword(true);
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                setSuccess("Register successfully");
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
@@ -48,6 +47,7 @@ const Register = () => {
                 })
                 profileUpdate(result.user, name, photoUrl);
                 reset();
+                navigate(from);
             })
             .catch(error => {
                 setShowPassword(true);
@@ -63,12 +63,10 @@ const Register = () => {
     }
 
     const handleProviderGithub = () => {
-        setSuccess("");
         setError("");
         handleGithubProvider()
             .then(() => {
                 setShowPassword(true);
-                setSuccess("Login Successfully");
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
@@ -81,7 +79,6 @@ const Register = () => {
             .catch(error => {
                 setShowPassword(true);
                 setError(error.message);
-                navigate('/login');
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
@@ -99,7 +96,6 @@ const Register = () => {
         handleGoogleProvider()
             .then(() => {
                 setShowPassword(true);
-                setSuccess("Register Successfully");
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
@@ -132,10 +128,6 @@ const Register = () => {
             .catch(error => {
                 setError(error.message);
             })
-    }
-
-    const handlePasswordShow = () => {
-        setShowPassword(!showPassword);
     }
 
     return (
@@ -179,10 +171,10 @@ const Register = () => {
 
                             <div className='relative'>
                                 <input type={showPassword ? "password" : "text"} {...register("password", { required: true, pattern: /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/ })} placeholder="Password" name='password' className="input input-bordered w-full" />
-                                <button onClick={handlePasswordShow}><FaRegEye className='absolute bottom-4 right-2'></FaRegEye></button>
+                                <button onClick={() => setShowPassword(!showPassword)}><FaRegEye className='absolute bottom-4 right-2'></FaRegEye></button>
                             </div>
                             <p className='text-red-600'>{errors.password?.type === "pattern" && "Please given minimum six character one capital letter and one special letter"}</p>
-                            <p className='text-red-600'>{errors.password && <span>This field is required</span>}</p>
+                            <p className='text-red-600'>{errors.password?.type === "required" && <span>This field is required</span>}</p>
 
                         </div>
                         <div className="form-control">
