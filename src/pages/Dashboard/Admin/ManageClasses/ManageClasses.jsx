@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const ManageClasses = () => {
     const [classData, setClassData] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/instructor/classes')
+        fetch('http://localhost:5000/classes')
             .then(res => res.json())
             .then(data => setClassData(data))
     }, [])
@@ -34,7 +34,7 @@ const ManageClasses = () => {
                                 <td>
                                     <div className="avatar">
                                         <div className="mask mask-squircle w-12 h-12">
-                                            <img src={data.image} alt="Avatar Tailwind CSS Component" />
+                                            <img src={data.classImage} alt="Avatar Tailwind CSS Component" />
                                         </div>
                                     </div>
                                 </td>
@@ -42,7 +42,7 @@ const ManageClasses = () => {
                                 <td>{data.instructorName}</td>
                                 <td>{data.instructorEmail}</td>
                                 <td>{data.seats}</td>
-                                <td>{data.price}</td>
+                                <td>${data.price}</td>
                                 <td>{data.status}</td>
                                 <th>
                                     <button className="btn btn-primary btn-xs">Approve</button>

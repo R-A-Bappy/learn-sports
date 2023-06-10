@@ -7,6 +7,7 @@ import Dashboard from "../layout/Dashboard";
 import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import InstructorClass from "../pages/Dashboard/InstructorClass/InstructorClass";
 import ManageClasses from "../pages/Dashboard/Admin/ManageClasses/ManageClasses";
+import Classes from "../pages/CLasses/Classes";
 
 
 
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
         element: <Main />,
         errorElement: <ErrorPage />,
         children: [
+            {
+                path: 'classes',
+                element: <Classes />
+            },
             {
                 path: 'login',
                 element: <Login />

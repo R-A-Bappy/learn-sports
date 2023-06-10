@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { updateProfile } from 'firebase/auth';
 import { AuthContext } from '../../provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form";
@@ -13,7 +12,7 @@ const Register = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
-    const { createUser, handleGithubProvider, handleGoogleProvider } = useContext(AuthContext);
+    const { createUser, handleGithubProvider, handleGoogleProvider, profileUpdate } = useContext(AuthContext);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     console.log(errors);
 
@@ -45,7 +44,9 @@ const Register = () => {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                profileUpdate(result.user, name, photoUrl);
+                profileUpdate(name, photoUrl)
+                    .then()
+                    .catch(error => setError(error.message))
                 reset();
                 navigate(from);
             })
@@ -115,18 +116,6 @@ const Register = () => {
                     showConfirmButton: false,
                     timer: 1500
                 })
-            })
-    }
-
-    const profileUpdate = (user, name, photoUrl) => {
-        updateProfile(user, {
-            displayName: name,
-            photoURL: photoUrl
-        })
-            .then(() => {
-            })
-            .catch(error => {
-                setError(error.message);
             })
     }
 

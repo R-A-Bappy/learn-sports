@@ -31,7 +31,7 @@ const Dashboard = () => {
                 {admin && <ul className="menu p-4 w-80 h-full text-white bg-emerald-900">
                     {/* Sidebar content here */}
                     <li><Link to='/dashboard/manageClass'><MdManageHistory />Manage Classes</Link></li>
-                    <li><Link to='manageUser'><MdManageAccounts /> My Enrolled Classes</Link></li>
+                    <li><Link to='manageUser'><MdManageAccounts /> All Users</Link></li>
                 </ul>}
             </div>
         </div>
