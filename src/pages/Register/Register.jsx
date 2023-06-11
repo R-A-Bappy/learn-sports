@@ -58,7 +58,7 @@ const Register = () => {
                                         showConfirmButton: false,
                                         timer: 1500
                                     })
-                                    navigate(from);
+                                    navigate(from, { replace: true });
                                 }
                             })
                     })
@@ -80,16 +80,20 @@ const Register = () => {
     const handleProviderGithub = () => {
         setError("");
         handleGithubProvider()
-            .then(() => {
-                setShowPassword(true);
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Register Successfully',
-                    showConfirmButton: false,
-                    timer: 1500
+            .then(result => {
+                const loggedUser = result.user;
+                const saveUser = { name: loggedUser.displayName, email: loggedUser.email }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
                 })
-                navigate(from);
+                    .then(res => res.json())
+                    .then(() => {
+                        navigate(from, { replace: true });
+                    })
             })
             .catch(error => {
                 setShowPassword(true);
@@ -101,7 +105,6 @@ const Register = () => {
                     showConfirmButton: false,
                     timer: 1500
                 })
-
             })
     }
 
@@ -109,16 +112,20 @@ const Register = () => {
         setSuccess("");
         setError("");
         handleGoogleProvider()
-            .then(() => {
-                setShowPassword(true);
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Register Successfully',
-                    showConfirmButton: false,
-                    timer: 1500
+            .then(result => {
+                const loggedUser = result.user;
+                const saveUser = { name: loggedUser.displayName, email: loggedUser.email }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
                 })
-                navigate(from);
+                    .then(res => res.json())
+                    .then(() => {
+                        navigate(from, { replace: true });
+                    })
             })
             .catch(error => {
                 setShowPassword(true);

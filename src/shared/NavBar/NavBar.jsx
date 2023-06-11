@@ -5,6 +5,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
+    console.log(user)
 
 
     const handleLogOut = () => {
@@ -35,7 +36,7 @@ const NavBar = () => {
                         <li>
                             <label className="avatar">
                                 <div className="w-10 rounded-full">
-                                    <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                    <img src={user.photoURL} />
                                 </div>
                             </label>
                         </li></> :

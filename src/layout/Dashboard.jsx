@@ -4,9 +4,9 @@ import icon from '../assets/contract.png'
 import { Link, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
-    const user = true;
+    const user = false;
     const instructor = false;
-    const admin = false;
+    const admin = true;
     return (
         <div className="drawer">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -31,7 +31,7 @@ const Dashboard = () => {
                 {admin && <ul className="menu p-4 w-80 h-full text-white bg-emerald-900">
                     {/* Sidebar content here */}
                     <li><Link to='manageClass'><MdManageHistory />Manage Classes</Link></li>
-                    <li><Link to='manageUser'><MdManageAccounts /> All Users</Link></li>
+                    <li><Link to='manageUsers'><MdManageAccounts /> All Users</Link></li>
                 </ul>}
             </div>
         </div>

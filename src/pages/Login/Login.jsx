@@ -30,6 +30,7 @@ const Login = () => {
                 navigate(from);
             })
             .catch(error => {
+                showPassword(true);
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
@@ -45,15 +46,20 @@ const Login = () => {
 
     const handleProviderGithub = () => {
         handleGithubProvider()
-            .then(() => {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Login Successfully',
-                    showConfirmButton: false,
-                    timer: 1500
+            .then(result => {
+                const loggedUser = result.user;
+                const saveUser = { name: loggedUser.displayName, email: loggedUser.email }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
                 })
-                navigate(from);
+                    .then(res => res.json())
+                    .then(() => {
+                        navigate(from, { replace: true });
+                    })
             })
             .catch(error => {
                 navigate('/login');
@@ -70,19 +76,22 @@ const Login = () => {
 
     const handleProviderGoogle = () => {
         handleGoogleProvider()
-            .then(() => {
-                setShowPassword(true);
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Login Successfully',
-                    showConfirmButton: false,
-                    timer: 1500
+            .then(result => {
+                const loggedUser = result.user;
+                const saveUser = { name: loggedUser.displayName, email: loggedUser.email }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
                 })
-                navigate(from);
+                    .then(res => res.json())
+                    .then(() => {
+                        navigate(from, { replace: true });
+                    })
             })
             .catch(error => {
-                setShowPassword(true);
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
