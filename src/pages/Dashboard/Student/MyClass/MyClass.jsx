@@ -1,6 +1,7 @@
 import { FaTrash } from "react-icons/fa";
 import useSelectedClasses from "../../../../hooks/useSelectedClasses";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 const MyClass = () => {
@@ -65,7 +66,7 @@ const MyClass = () => {
                                     <button onClick={() => handleDelete(data)} className="btn btn-ghost bg-red-500 btn-sm "><FaTrash /></button>
                                 </th>
                                 <th>
-                                    <button className="btn btn-ghost bg-green-600 btn-sm">Pay</button>
+                                    <Link to='payment' state={{ price: data.price, classData: data }}><button className="btn btn-ghost bg-green-600 btn-sm">Pay</button></Link>
                                 </th>
                             </tr>)
                     }

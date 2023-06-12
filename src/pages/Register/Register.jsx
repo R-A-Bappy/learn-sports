@@ -39,7 +39,7 @@ const Register = () => {
                 console.log(loggedUser);
                 profileUpdate(name, photoUrl)
                     .then(() => {
-                        const saveUser = { name, email }
+                        const saveUser = { name, email, role: 'student' }
                         fetch('http://localhost:5000/users', {
                             method: 'POST',
                             headers: {
@@ -82,7 +82,7 @@ const Register = () => {
         handleGithubProvider()
             .then(result => {
                 const loggedUser = result.user;
-                const saveUser = { name: loggedUser.displayName, email: loggedUser.email }
+                const saveUser = { name: loggedUser.displayName, email: loggedUser.email, role: 'student' }
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: {
@@ -114,7 +114,7 @@ const Register = () => {
         handleGoogleProvider()
             .then(result => {
                 const loggedUser = result.user;
-                const saveUser = { name: loggedUser.displayName, email: loggedUser.email }
+                const saveUser = { name: loggedUser.displayName, email: loggedUser.email, role: 'student' }
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: {
