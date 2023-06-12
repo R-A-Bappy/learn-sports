@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import useSelectedClasses from "../../hooks/useSelectedClasses";
+import axios from "axios";
 
 
 
@@ -12,6 +13,18 @@ const ClassCart = ({ data }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [, refetch] = useSelectedClasses();
+    const [userData, setUserData] = useState({});
+
+
+    useEffect(() => {
+        axios('http://localhost:5000/users')
+            .then(data => {
+                const userData = data.data.find(data => data.email === user.email);
+                setUserData(userData);
+            })
+    }, [user])
+
+    console.log(userData);
 
     const handleSelected = () => {
         if (user && user.email) {
@@ -60,7 +73,7 @@ const ClassCart = ({ data }) => {
         }
     }
     return (
-        <div className="card w-96 bg-base-100 shadow-xl">
+        <div className={`card w-96 shadow-xl ${seats === 0 ? 'bg-red-500 text-white' : 'bg-base-100'}`}>
             <figure><img src={classImage} alt="Class Image" className="h-64 w-full" /></figure>
             <div className="card-body">
                 <h2 className="card-title">Class Name: {className}</h2>
@@ -70,7 +83,7 @@ const ClassCart = ({ data }) => {
                     <p>Price: ${price}</p>
                 </div>
                 <div className="card-actions justify-end">
-                    <button onClick={handleSelected} className="btn btn-primary">Selected</button>
+                    <button onClick={handleSelected} className="btn btn-primary" disabled={seats === 0 || userData?.role === 'admin' || userData?.role === 'instructor'}>Selected</button>
                 </div>
             </div>
         </div>

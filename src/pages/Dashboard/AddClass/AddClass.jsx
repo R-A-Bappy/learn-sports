@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 const AddClass = () => {
     const { user } = useContext(AuthContext);
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, } = useForm();
     const onSubmit = data => {
         const classData = {
             instructorName: data.instructorName,
@@ -14,7 +14,7 @@ const AddClass = () => {
             classImage: data.classImage,
             price: parseFloat(data.price),
             seats: parseInt(data.seats),
-            status: 'pending'
+            status: 'pending',
         }
         fetch('http://localhost:5000/instructor/addClass', {
             method: 'POST',

@@ -4,6 +4,7 @@ import useAuth from "../../../../hooks/useAuth";
 import useSelectedClasses from "../../../../hooks/useSelectedClasses";
 
 
+
 const CheckOutForm = ({ price, classData }) => {
     const stripe = useStripe();
     const elements = useElements();
@@ -13,6 +14,7 @@ const CheckOutForm = ({ price, classData }) => {
     const [clientSecret, setClientSecret] = useState("");
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
+    console.log(classData)
 
     useEffect(() => {
         fetch("http://localhost:5000/create-payment-intent", {
@@ -88,6 +90,7 @@ const CheckOutForm = ({ price, classData }) => {
             })
                 .then((res) => res.json())
                 .then((data) => console.log(data));
+
 
             fetch(`http://localhost:5000/selectedClass/${classData._id}`, {
                 method: 'Delete'

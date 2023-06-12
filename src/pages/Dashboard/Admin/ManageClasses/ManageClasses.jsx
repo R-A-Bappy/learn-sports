@@ -1,14 +1,37 @@
-import { useEffect, useState } from "react";
+import axios from "axios";
+import { useState } from "react";
+import useAllClasses from "../../../../hooks/useAllClasses";
 
 
 
 const ManageClasses = () => {
-    const [classData, setClassData] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/classes')
-            .then(res => res.json())
-            .then(data => setClassData(data))
-    }, [])
+    const [classData, refetch] = useAllClasses();
+    const [disabled, setDisabled] = useState(false);
+
+
+    const handleApprove = (_id) => {
+        axios.patch(`http://localhost:5000/classes?id=${_id}&status=approve`)
+            .then(data => {
+                if (data.data.modifiedCount > 0) {
+                    setDisabled(true);
+                    refetch();
+                }
+            })
+
+    }
+
+    const handleModal = _id => {
+        return (<dialog id={`my_modal_${_id}`} className="modal modal-bottom sm:modal-middle">
+            <form method="dialog" className="modal-box">
+                <h3 className="font-bold text-lg">Please Feedback</h3>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <div className="modal-action">
+                    {/* if there is a button in form, it will close the modal */}
+                    <button className="btn">Close</button>
+                </div>
+            </form>
+        </dialog>)
+    }
     return (
         <div className="overflow-x-auto">
             <table className="table">
@@ -45,20 +68,29 @@ const ManageClasses = () => {
                                 <td>${data.price}</td>
                                 <td>{data.status}</td>
                                 <th>
-                                    <button className="btn btn-primary btn-xs">Approve</button>
+                                    <button disabled={disabled || data.status !== 'pending'} onClick={() => handleApprove(data._id)} className="btn btn-primary btn-xs">Approve</button>
                                 </th>
                                 <th>
-                                    <button className="btn btn-warning btn-xs">Deny</button>
+                                    <button disabled={disabled || data.status !== 'pending'} className="btn btn-warning btn-xs">Deny</button>
                                 </th>
                                 <th>
-                                    <button className="btn btn-info btn-xs">Feedback</button>
+                                    <button onClick={() => window.my_modal_5.showModal()} className="btn btn-info btn-xs">Feedback</button>
                                 </th>
-                            </tr>)
+                            </tr>
+                        )
                     }
-                    {/* row 1 */}
-
                 </tbody>
             </table>
+            <dialog id='my_modal_5' className="modal modal-bottom sm:modal-middle">
+                <form method="dialog" className="modal-box">
+                    <h3 className="font-bold text-lg">Please Feedback</h3>
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                    <div className="modal-action">
+                        {/* if there is a button in form, it will close the modal */}
+                        <button className="btn">Close</button>
+                    </div>
+                </form>
+            </dialog>
         </div>
     );
 };

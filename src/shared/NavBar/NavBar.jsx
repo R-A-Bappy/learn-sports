@@ -1,16 +1,17 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
-    console.log(user)
+    console.log(user);
+    const navigate = useNavigate();
 
 
     const handleLogOut = () => {
         logOut()
-            .then(() => { })
+            .then(() => { navigate('/login') })
             .catch(error => console.log(error))
     }
 
