@@ -35,12 +35,12 @@ const MyEnrollClass = () => {
                                     <td>
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-12 h-12">
-                                                <img src={data?.classData?.classImage} alt="Avatar Tailwind CSS Component" />
+                                                <img src={data?.classImage} alt="Avatar Tailwind CSS Component" />
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{data?.classData?.className}</td>
-                                    <td>{data?.classData?.instructorName}</td>
+                                    <td>{data?.className}</td>
+                                    <td>{data?.instructorName}</td>
                                     <td>{data?.status}</td>
                                 </tr>)
                         }

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import useAllClasses from "../../../../hooks/useAllClasses";
 
 
@@ -7,6 +7,9 @@ import useAllClasses from "../../../../hooks/useAllClasses";
 const ManageClasses = () => {
     const [classData, refetch] = useAllClasses();
     const [disabled, setDisabled] = useState(false);
+    const formResetRef = useRef(null);
+    let id = null;
+
 
 
     const handleApprove = (_id) => {
@@ -20,17 +23,32 @@ const ManageClasses = () => {
 
     }
 
-    const handleModal = _id => {
-        return (<dialog id={`my_modal_${_id}`} className="modal modal-bottom sm:modal-middle">
-            <form method="dialog" className="modal-box">
-                <h3 className="font-bold text-lg">Please Feedback</h3>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-                <div className="modal-action">
-                    {/* if there is a button in form, it will close the modal */}
-                    <button className="btn">Close</button>
-                </div>
-            </form>
-        </dialog>)
+    const handleDeny = (_id) => {
+        axios.patch(`http://localhost:5000/classes?id=${_id}&status=deny`)
+            .then(data => {
+                if (data.data.modifiedCount > 0) {
+                    setDisabled(true);
+                    refetch();
+                }
+            })
+    }
+
+    const handleShowModal = (id) => {
+        console.log(id);
+        console.log(formResetRef.current.feedback.value);
+        const feedback = formResetRef.current.feedback.value;
+        axios.patch(`http://localhost:5000/classes?id=${id}`, { feedback })
+            .then(data => {
+                if (data.data.modifiedCount > 0) {
+                    refetch();
+                }
+            })
+        formResetRef.current.reset();
+    }
+
+    const handleModal = (_id) => {
+        window.my_modal_5.showModal();
+        id = _id;
     }
     return (
         <div className="overflow-x-auto">
@@ -71,10 +89,12 @@ const ManageClasses = () => {
                                     <button disabled={disabled || data.status !== 'pending'} onClick={() => handleApprove(data._id)} className="btn btn-primary btn-xs">Approve</button>
                                 </th>
                                 <th>
-                                    <button disabled={disabled || data.status !== 'pending'} className="btn btn-warning btn-xs">Deny</button>
+                                    <button disabled={disabled || data.status !== 'pending'} onClick={() => handleDeny(data._id)} className="btn btn-warning btn-xs">Deny</button>
                                 </th>
                                 <th>
-                                    <button onClick={() => window.my_modal_5.showModal()} className="btn btn-info btn-xs">Feedback</button>
+                                    {/* <button onClick={() => window.my_modal_5.showModal()} className="btn btn-info btn-xs">Feedback</button> */}
+                                    <button onClick={() => handleModal(data._id)} className="btn btn-info btn-xs">Feedback</button>
+                                    {/* <button onClick={handleShowModal} className="btn btn-info btn-xs">Feedback</button> */}
                                 </th>
                             </tr>
                         )
@@ -82,12 +102,12 @@ const ManageClasses = () => {
                 </tbody>
             </table>
             <dialog id='my_modal_5' className="modal modal-bottom sm:modal-middle">
-                <form method="dialog" className="modal-box">
-                    <h3 className="font-bold text-lg">Please Feedback</h3>
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                <form ref={formResetRef} method="dialog" className="modal-box">
+                    <h3 className="font-bold text-lg text-center mb-8">Please Your Feedback</h3>
+                    <textarea className="w-full" placeholder="please" name="feedback" id="" cols="30" rows="7"></textarea>
                     <div className="modal-action">
                         {/* if there is a button in form, it will close the modal */}
-                        <button className="btn">Close</button>
+                        <button onClick={() => handleShowModal(id)} className="btn btn-outline btn-success">Feedback</button>
                     </div>
                 </form>
             </dialog>

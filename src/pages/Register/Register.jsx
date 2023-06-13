@@ -19,7 +19,7 @@ const Register = () => {
     const onSubmit = data => {
 
         const name = data.name;
-        const photoUrl = data.photoUrl;
+        const photoURL = data.photoUrl;
         const email = data.email;
         const password = data.password;
         const confirmPassword = data.confirmPassword;
@@ -37,9 +37,9 @@ const Register = () => {
                 setShowPassword(true);
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                profileUpdate(name, photoUrl)
+                profileUpdate(name, photoURL)
                     .then(() => {
-                        const saveUser = { name, email, role: 'student' }
+                        const saveUser = { name, email, photoURL, role: 'student' }
                         fetch('http://localhost:5000/users', {
                             method: 'POST',
                             headers: {
@@ -82,7 +82,7 @@ const Register = () => {
         handleGithubProvider()
             .then(result => {
                 const loggedUser = result.user;
-                const saveUser = { name: loggedUser.displayName, email: loggedUser.email, role: 'student' }
+                const saveUser = { name: loggedUser.displayName, email: loggedUser.email, photoURL: loggedUser.photoURL, role: 'student' }
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: {
@@ -114,7 +114,7 @@ const Register = () => {
         handleGoogleProvider()
             .then(result => {
                 const loggedUser = result.user;
-                const saveUser = { name: loggedUser.displayName, email: loggedUser.email, role: 'student' }
+                const saveUser = { name: loggedUser.displayName, email: loggedUser.email, photoURL: loggedUser.photoURL, role: 'student' }
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: {

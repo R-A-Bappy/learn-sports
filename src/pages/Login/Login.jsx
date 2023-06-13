@@ -48,7 +48,7 @@ const Login = () => {
         handleGithubProvider()
             .then(result => {
                 const loggedUser = result.user;
-                const saveUser = { name: loggedUser.displayName, email: loggedUser.email, role: 'student' }
+                const saveUser = { name: loggedUser.displayName, email: loggedUser.email, photoURL: loggedUser.photoURL, role: 'student' }
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: {
@@ -78,7 +78,8 @@ const Login = () => {
         handleGoogleProvider()
             .then(result => {
                 const loggedUser = result.user;
-                const saveUser = { name: loggedUser.displayName, email: loggedUser.email, role: 'student' }
+                console.log(loggedUser)
+                const saveUser = { name: loggedUser.displayName, email: loggedUser.email, photoURL: loggedUser.photoURL, role: 'student' }
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: {

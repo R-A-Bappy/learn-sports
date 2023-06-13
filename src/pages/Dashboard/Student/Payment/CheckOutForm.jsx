@@ -75,10 +75,15 @@ const CheckOutForm = ({ price, classData }) => {
         if (paymentIntent.status === "succeeded") {
             setTransactionId(paymentIntent.id);
             console.log(paymentIntent);
+            const { className, classId, classImage, instructorName, instructorEmail, } = classData;
             const payment = {
                 transactionId: paymentIntent.id,
                 status: paymentIntent.status,
-                classData,
+                className,
+                classId,
+                classImage,
+                instructorName,
+                instructorEmail,
                 userName: user.displayName,
                 userEmail: user.email,
                 price

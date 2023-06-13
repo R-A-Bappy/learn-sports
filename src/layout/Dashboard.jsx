@@ -3,6 +3,7 @@ import { MdManageAccounts, MdManageHistory } from "react-icons/md"
 import icon from '../assets/contract.png'
 import { Link, Outlet } from "react-router-dom";
 import useAdminInstructor from "../hooks/useAdminInstructor";
+import { Fade } from "react-awesome-reveal";
 
 const Dashboard = () => {
     const [isAdminInstructor] = useAdminInstructor();
@@ -13,8 +14,8 @@ const Dashboard = () => {
         <div className="drawer">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content relative">
-                <div className="w-8/12 ms-96">
-                    <Outlet />
+                <div className="w-9/12 ms-80">
+                    <Fade delay={1e3}><Outlet /></Fade>
                 </div>
                 <label htmlFor="my-drawer" className="btn btn-primary absolute top-0 drawer-button">Open drawer</label>
             </div>

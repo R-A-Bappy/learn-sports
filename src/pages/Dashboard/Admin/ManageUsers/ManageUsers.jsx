@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import Swal from "sweetalert2";
 
 
 const ManageUsers = () => {
-
     const { data: users = [], refetch } = useQuery(['users'], async () => {
-        const response = await fetch('http://localhost:5000/users');
-        return response.json();
+        const response = await axios.get('http://localhost:5000/users');
+        return response.data;
     })
 
     const makeAdmin = user => {
@@ -68,8 +68,8 @@ const ManageUsers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.role ? user.role : 'Student'}</td>
-                                <td><button onClick={() => makeAdmin(user)} className="btn btn-secondary btn-sm">Admin</button></td>
-                                <td><button onClick={() => makeInstructor(user)} className="btn btn-warning btn-sm">Instructor</button></td>
+                                <td><button disabled={user.role === 'admin' && true} onClick={() => makeAdmin(user)} className="btn btn-secondary btn-sm">Admin</button></td>
+                                <td><button disabled={user.role === 'instructor' && true} onClick={() => makeInstructor(user)} className="btn btn-warning btn-sm">Instructor</button></td>
                             </tr>)
                     }
 
