@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import InstructorClassTR from "./InstructorClassTR";
-import { Slide } from "react-awesome-reveal";
 
 const InstructorClass = () => {
     const { user } = useContext(AuthContext);

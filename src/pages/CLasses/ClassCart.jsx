@@ -80,10 +80,10 @@ const ClassCart = ({ data }) => {
                 <p>Instructor Name: {instructorName}</p>
                 <div className="flex justify-between">
                     <p>Available Seats: {seats}</p>
-                    <p>Price: ${price}</p>
+                    <p className="text-right">Price: ${price}</p>
                 </div>
-                <div className="card-actions justify-end">
-                    <button onClick={handleSelected} className="btn btn-primary" disabled={seats === 0 || userData?.role === 'admin' || userData?.role === 'instructor'}>Selected</button>
+                <div className="card-actions">
+                    <button onClick={handleSelected} className="btn btn-primary w-full mt-8" disabled={seats === 0 || userData?.role === 'admin' || userData?.role === 'instructor'}>Selected</button>
                 </div>
             </div>
         </div>

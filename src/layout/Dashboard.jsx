@@ -21,24 +21,33 @@ const Dashboard = () => {
             </div>
             <div className="drawer-side ">
                 <label htmlFor="my-drawer" className="drawer-overlay"></label>
-                {role === 'student' && <ul className="menu p-4 w-80 h-full text-white bg-emerald-900">
-                    {/* Sidebar content here */}
-                    <li><Link to='myClass'><FaCheck />My Selected Classes</Link></li>
-                    <li><Link to='myEnroll'><img src={icon} alt="" className="w-4 h-4 text-white" /> My Enrolled Classes</Link></li>
-                    <li><Link to='paymentHistory'><img src={icon} alt="" className="w-4 h-4 text-white" /> Payment History</Link></li>
-                </ul>}
-                {role === "instructor" && <ul className="menu p-4 w-80 h-full text-white bg-emerald-900">
-                    {/* Sidebar content here */}
-                    <li><Link to='addClass'><FaPlusSquare />Add Class</Link></li>
-                    <li><Link to='instructorClass'><FaRegUser /> My Classes</Link></li>
-                </ul>}
-                {role === "admin" && <ul className="menu p-4 w-80 h-full text-white bg-emerald-900">
-                    {/* Sidebar content here */}
-                    <li><Link to='manageClass'><MdManageHistory />Manage Classes</Link></li>
-                    <li><Link to='manageUsers'><MdManageAccounts /> All Users</Link></li>
-                </ul>}
+                <ul className="menu p-4 w-80 h-full text-white bg-emerald-900">
+                    {role === 'student' &&
+                        <>
+                            < li > <Link to='myClass'><FaCheck />My Selected Classes</Link></li>
+                            <li><Link to='myEnroll'><img src={icon} alt="" className="w-4 h-4 text-white" /> My Enrolled Classes</Link></li>
+                            <li><Link to='paymentHistory'><img src={icon} alt="" className="w-4 h-4 text-white" /> Payment History</Link></li>
+                        </>
+                    }
+                    {role === "instructor" &&
+                        <>
+                            <li><Link to='addClass'><FaPlusSquare />Add Class</Link></li>
+                            <li><Link to='instructorClass'><FaRegUser /> My Classes</Link></li>
+                        </>
+                    }
+                    {role === "admin" &&
+                        <>
+                            <li><Link to='manageClass'><MdManageHistory />Manage Classes</Link></li>
+                            <li><Link to='manageUsers'><MdManageAccounts /> All Users</Link></li>
+                        </>
+                    }
+                    <div className="divider border-red-600"></div>
+                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='/instructor'>Instructors</Link></li>
+                    <li><Link to='/classes'>Classes</Link></li>
+                </ul>
             </div>
-        </div>
+        </div >
     );
 };
 
