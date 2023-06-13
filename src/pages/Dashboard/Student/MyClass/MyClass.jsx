@@ -61,7 +61,7 @@ const MyClass = () => {
                                 </td>
                                 <td>{data.className}</td>
                                 <td>{data?.instructorName}</td>
-                                <td>{data.price}</td>
+                                <td>${data.price}</td>
                                 <th>
                                     <button onClick={() => handleDelete(data)} className="btn btn-ghost bg-red-500 btn-sm "><FaTrash /></button>
                                 </th>

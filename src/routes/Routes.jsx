@@ -15,6 +15,7 @@ import Payment from "../pages/Dashboard/Student/Payment/Payment";
 import MyEnrollClass from "../pages/Dashboard/Student/MyEnrollClass/MyEnrollClass";
 import PaymentHistory from "../pages/Dashboard/Student/PaymentHistory/PaymentHistory";
 import Instructor from "../pages/Instructor/Instructor";
+import Home from "../pages/Home/Home/Home";
 
 
 
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
         element: <Main />,
         errorElement: <ErrorPage />,
         children: [
+            {
+                path: '/',
+                element: <Home />
+            },
             {
                 path: 'classes',
                 element: <Classes />

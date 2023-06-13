@@ -1,18 +1,9 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import InstructorCart from "./InstructorCart";
+import useInstructors from "../../hooks/useInstructors";
 
 
 const Instructor = () => {
-    const [instructorAllData, setInstructorAllData] = useState([]);
-    useEffect(() => {
-        axios.get('http://localhost:5000/users')
-            .then(data => {
-                const instructorData = data.data.filter(d => d.role === 'instructor');
-                setInstructorAllData(instructorData);
-            })
-    }, [])
-    console.log(instructorAllData)
+    const [instructorAllData] = useInstructors();
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-11/12 md:w-10/12 mx-auto my-8">
             {

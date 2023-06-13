@@ -7,7 +7,6 @@ const Main = () => {
     return (
         <div>
             <NavBar />
-            <h2 className="font-extrabold text-6xl">hello world</h2>
             <Outlet />
             <Footer />
         </div>
