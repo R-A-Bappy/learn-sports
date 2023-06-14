@@ -16,7 +16,7 @@ const ManageClasses = () => {
         axios.patch(`http://localhost:5000/classes?id=${_id}&status=approve`)
             .then(data => {
                 if (data.data.modifiedCount > 0) {
-                    setDisabled(true);
+                    setDisabled(!disabled);
                     refetch();
                 }
             })
@@ -27,7 +27,7 @@ const ManageClasses = () => {
         axios.patch(`http://localhost:5000/classes?id=${_id}&status=deny`)
             .then(data => {
                 if (data.data.modifiedCount > 0) {
-                    setDisabled(true);
+                    setDisabled(!disabled);
                     refetch();
                 }
             })
@@ -86,10 +86,10 @@ const ManageClasses = () => {
                                 <td>${data.price}</td>
                                 <td>{data.status}</td>
                                 <th>
-                                    <button disabled={disabled || data.status !== 'pending'} onClick={() => handleApprove(data._id)} className="btn btn-primary btn-xs">Approve</button>
+                                    <button disabled={data.status !== 'pending'} onClick={() => handleApprove(data._id)} className="btn btn-primary btn-xs">Approve</button>
                                 </th>
                                 <th>
-                                    <button disabled={disabled || data.status !== 'pending'} onClick={() => handleDeny(data._id)} className="btn btn-warning btn-xs">Deny</button>
+                                    <button disabled={data.status !== 'pending'} onClick={() => handleDeny(data._id)} className="btn btn-warning btn-xs">Deny</button>
                                 </th>
                                 <th>
                                     {/* <button onClick={() => window.my_modal_5.showModal()} className="btn btn-info btn-xs">Feedback</button> */}

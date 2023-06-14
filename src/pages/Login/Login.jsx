@@ -125,7 +125,7 @@ const Login = () => {
                             </label>
                             <div className='relative'>
                                 <input type={showPassword ? "password" : "text"} {...register("password", { required: true })} placeholder="password" name='password' className="input input-bordered w-full" />
-                                <button onClick={() => setShowPassword(!showPassword)}><FaRegEye className='absolute bottom-4 right-2'></FaRegEye></button>
+                                <label onClick={() => setShowPassword(!showPassword)}><FaRegEye className='absolute bottom-4 right-2'></FaRegEye></label>
                             </div>
                             <p className='text-red-600'>{errors.password && <span>This field is required</span>}</p>
                             <label className="label">

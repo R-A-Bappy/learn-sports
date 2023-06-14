@@ -181,7 +181,7 @@ const Register = () => {
 
                             <div className='relative'>
                                 <input type={showPassword ? "password" : "text"} {...register("password", { required: true, pattern: /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/ })} placeholder="Password" name='password' className="input input-bordered w-full" />
-                                <button onClick={() => setShowPassword(!showPassword)}><FaRegEye className='absolute bottom-4 right-2'></FaRegEye></button>
+                                <label onClick={() => setShowPassword(!showPassword)}><FaRegEye className='absolute bottom-4 right-2'></FaRegEye></label>
                             </div>
                             <p className='text-red-600'>{errors.password?.type === "pattern" && "Please given minimum six character one capital letter and one special letter"}</p>
                             <p className='text-red-600'>{errors.password?.type === "required" && <span>This field is required</span>}</p>
