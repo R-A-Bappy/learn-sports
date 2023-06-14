@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const InstructorClassTR = ({ data }) => {
     const [enrollCount, setEnrollCount] = useState(0);
     useEffect(() => {
-        fetch(`http://localhost:5000/payments/enroll/${data._id}`)
+        fetch(`https://learn-sports-server.vercel.app/payments/enroll/${data._id}`)
             .then(res => res.json())
             .then(data => setEnrollCount(data.result))
     }, [data])

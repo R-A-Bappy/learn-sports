@@ -5,12 +5,12 @@ import Swal from "sweetalert2";
 
 const ManageUsers = () => {
     const { data: users = [], refetch } = useQuery(['users'], async () => {
-        const response = await axios.get('http://localhost:5000/users');
+        const response = await axios.get('https://learn-sports-server.vercel.app/users');
         return response.data;
     })
 
     const makeAdmin = user => {
-        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+        fetch(`https://learn-sports-server.vercel.app/users/admin/${user._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -29,7 +29,7 @@ const ManageUsers = () => {
     }
 
     const makeInstructor = user => {
-        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+        fetch(`https://learn-sports-server.vercel.app/users/instructor/${user._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())

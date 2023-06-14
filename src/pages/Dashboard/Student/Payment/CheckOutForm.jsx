@@ -17,7 +17,7 @@ const CheckOutForm = ({ price, classData }) => {
     console.log(classData)
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://learn-sports-server.vercel.app/create-payment-intent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ price }),
@@ -88,7 +88,7 @@ const CheckOutForm = ({ price, classData }) => {
                 userEmail: user.email,
                 price
             };
-            fetch("http://localhost:5000/payments", {
+            fetch("https://learn-sports-server.vercel.app/payments", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payment),
@@ -97,7 +97,7 @@ const CheckOutForm = ({ price, classData }) => {
                 .then((data) => console.log(data));
 
 
-            fetch(`http://localhost:5000/selectedClass/${classData._id}`, {
+            fetch(`https://learn-sports-server.vercel.app/selectedClass/${classData._id}`, {
                 method: 'Delete'
             })
                 .then(res => res.json())

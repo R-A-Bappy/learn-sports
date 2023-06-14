@@ -16,7 +16,7 @@ const AddClass = () => {
             seats: parseInt(data.seats),
             status: 'pending',
         }
-        fetch('http://localhost:5000/instructor/addClass', {
+        fetch('https://learn-sports-server.vercel.app/instructor/addClass', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -17,7 +17,7 @@ const ClassCart = ({ data }) => {
 
 
     useEffect(() => {
-        axios('http://localhost:5000/users')
+        axios('https://learn-sports-server.vercel.app/users')
             .then(data => {
                 const userData = data.data.find(data => data.email === user.email);
                 setUserData(userData);
@@ -36,7 +36,7 @@ const ClassCart = ({ data }) => {
                 instructorName,
                 email: user.email
             }
-            fetch('http://localhost:5000/selectedClass', {
+            fetch('https://learn-sports-server.vercel.app/selectedClass', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

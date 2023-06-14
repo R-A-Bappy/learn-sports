@@ -5,7 +5,7 @@ const useClasses = () => {
     const { data: classesData = [], refetch } = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/classes');
+            const res = await axios.get('https://learn-sports-server.vercel.app/classes');
             return res.data;
         }
     })

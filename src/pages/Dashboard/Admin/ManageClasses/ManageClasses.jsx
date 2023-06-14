@@ -13,7 +13,7 @@ const ManageClasses = () => {
 
 
     const handleApprove = (_id) => {
-        axios.patch(`http://localhost:5000/classes?id=${_id}&status=approve`)
+        axios.patch(`https://learn-sports-server.vercel.app/classes?id=${_id}&status=approve`)
             .then(data => {
                 if (data.data.modifiedCount > 0) {
                     setDisabled(!disabled);
@@ -24,7 +24,7 @@ const ManageClasses = () => {
     }
 
     const handleDeny = (_id) => {
-        axios.patch(`http://localhost:5000/classes?id=${_id}&status=deny`)
+        axios.patch(`https://learn-sports-server.vercel.app/classes?id=${_id}&status=deny`)
             .then(data => {
                 if (data.data.modifiedCount > 0) {
                     setDisabled(!disabled);
@@ -37,7 +37,7 @@ const ManageClasses = () => {
         console.log(id);
         console.log(formResetRef.current.feedback.value);
         const feedback = formResetRef.current.feedback.value;
-        axios.patch(`http://localhost:5000/classes?id=${id}`, { feedback })
+        axios.patch(`https://learn-sports-server.vercel.app/classes?id=${id}`, { feedback })
             .then(data => {
                 if (data.data.modifiedCount > 0) {
                     refetch();
