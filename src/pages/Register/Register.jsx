@@ -14,7 +14,6 @@ const Register = () => {
     const from = location?.state?.from?.pathname || '/';
     const { createUser, handleGithubProvider, handleGoogleProvider, profileUpdate } = useContext(AuthContext);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    console.log(errors);
 
     const onSubmit = data => {
 
@@ -31,12 +30,9 @@ const Register = () => {
             reset();
             return;
         }
-        console.log(data)
         createUser(email, password)
-            .then(result => {
+            .then(() => {
                 setShowPassword(true);
-                const loggedUser = result.user;
-                console.log(loggedUser);
                 profileUpdate(name, photoURL)
                     .then(() => {
                         const saveUser = { name, email, photoURL, role: 'student' }

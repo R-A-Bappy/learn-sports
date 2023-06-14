@@ -14,7 +14,7 @@ const CheckOutForm = ({ price, classData }) => {
     const [clientSecret, setClientSecret] = useState("");
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
-    console.log(classData)
+
 
     useEffect(() => {
         fetch("https://learn-sports-server.vercel.app/create-payment-intent", {
@@ -39,17 +39,15 @@ const CheckOutForm = ({ price, classData }) => {
             return;
         }
 
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
+        const { error } = await stripe.createPaymentMethod({
             type: 'card',
             card,
         });
 
         if (error) {
-            console.log('[error]', error);
             setCardError(error.message);
         } else {
             setCardError('');
-            console.log('[PaymentMethod]', paymentMethod);
         }
         setProcessing(true);
 
@@ -69,12 +67,9 @@ const CheckOutForm = ({ price, classData }) => {
         if (confirmError) {
             console.log(confirmError);
         }
-
-        console.log(paymentIntent);
         setProcessing(false)
         if (paymentIntent.status === "succeeded") {
             setTransactionId(paymentIntent.id);
-            console.log(paymentIntent);
             const { className, classId, classImage, instructorName, instructorEmail, } = classData;
             const payment = {
                 transactionId: paymentIntent.id,
@@ -94,7 +89,7 @@ const CheckOutForm = ({ price, classData }) => {
                 body: JSON.stringify(payment),
             })
                 .then((res) => res.json())
-                .then((data) => console.log(data));
+                .then(() => { });
 
 
             fetch(`https://learn-sports-server.vercel.app/selectedClass/${classData._id}`, {

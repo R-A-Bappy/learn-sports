@@ -78,7 +78,6 @@ const Login = () => {
         handleGoogleProvider()
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser)
                 const saveUser = { name: loggedUser.displayName, email: loggedUser.email, photoURL: loggedUser.photoURL, role: 'student' }
                 fetch('https://learn-sports-server.vercel.app/users', {
                     method: 'POST',

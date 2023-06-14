@@ -24,8 +24,6 @@ const ClassCart = ({ data }) => {
             })
     }, [user])
 
-    console.log(userData);
-
     const handleSelected = () => {
         if (user && user.email) {
             const selectClass = {

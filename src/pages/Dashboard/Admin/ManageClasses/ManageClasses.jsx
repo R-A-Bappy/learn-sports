@@ -34,8 +34,6 @@ const ManageClasses = () => {
     }
 
     const handleShowModal = (id) => {
-        console.log(id);
-        console.log(formResetRef.current.feedback.value);
         const feedback = formResetRef.current.feedback.value;
         axios.patch(`https://learn-sports-server.vercel.app/classes?id=${id}`, { feedback })
             .then(data => {

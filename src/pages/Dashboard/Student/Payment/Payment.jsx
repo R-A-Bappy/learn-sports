@@ -6,10 +6,8 @@ import { useLocation } from "react-router-dom";
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK);
 const Payment = () => {
     const location = useLocation();
-    console.log(location.state.price);
     const amount = location.state.price;
     const classData = location.state.classData;
-    console.log(classData)
     const price = parseFloat(amount.toFixed(2))
     return (
         <div>

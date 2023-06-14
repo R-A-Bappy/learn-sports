@@ -12,7 +12,6 @@ const MyEnrollClass = () => {
             return data;
         }
     })
-    console.log(myEnrollClassData)
 
     return (
         <>

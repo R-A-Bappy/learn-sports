@@ -5,7 +5,6 @@ import InstructorClassTR from "./InstructorClassTR";
 const InstructorClass = () => {
     const { user } = useContext(AuthContext);
     const [classData, setClassData] = useState([]);
-    console.log(user.email)
 
     useEffect(() => {
         fetch(`https://learn-sports-server.vercel.app/instructor/classes/${user.email}`)

@@ -7,9 +7,7 @@ import { Fade } from "react-awesome-reveal";
 
 const Dashboard = () => {
     const [isAdminInstructor] = useAdminInstructor();
-    console.log(isAdminInstructor);
     const role = isAdminInstructor?.role;
-    console.log(role);
     return (
         <div className="drawer">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
