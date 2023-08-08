@@ -71,7 +71,7 @@ const ClassCart = ({ data }) => {
         }
     }
     return (
-        <div className={`card w-96 shadow-xl ${seats === 0 ? 'bg-red-500 text-white' : 'bg-base-100'}`}>
+        <div className={`card w-full shadow-xl ${seats === 0 ? 'bg-red-500 text-white' : 'bg-base-100'}`}>
             <figure><img src={classImage} alt="Class Image" className="h-64 w-full" /></figure>
             <div className="card-body">
                 <h2 className="card-title">Class Name: {className}</h2>
